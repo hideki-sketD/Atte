@@ -30,6 +30,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
 
         Fortify::createUsersUsing(CreateNewUser::class);
+        
 
         Fortify::registerView(function () {
             return view('auth.register');
@@ -45,5 +46,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
+
+        $this->app->singleton(LoginResponseContract::class, FortifyLoginResponse::class);
     }
 }

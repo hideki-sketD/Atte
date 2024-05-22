@@ -5,5 +5,5 @@ use App\Http\Controllers\StampingController;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [StampingController::class, 'index']);
+    Route::get('/', [StampingController::class, 'index'])->name('index');
 });

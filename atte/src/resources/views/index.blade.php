@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-<div class="attendance__alert">
-  // メッセージ機能
-</div>
+<p>名前:{{ $my_user->name }}</p>
 
 <div class="attendance__content">
   <div class="attendance__panel">
