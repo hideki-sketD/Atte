@@ -18,6 +18,7 @@ class CreateStampsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->dateTime('punchIn');
             $table->dateTime('punchOut')->nullable();
+            $table->integer('workingTime')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
