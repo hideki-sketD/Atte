@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Stamp;
+use App\Models\Attendance;
 
 class PunchInRequest extends FormRequest
 {
@@ -34,8 +34,9 @@ class PunchInRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $user = Auth::user();
-            $existingStamp = Stamp::where('user_id', $user->id)
+            $existingStamp = Attendance::where('user_id', $user->id)
                                    ->whereNull('punchOut')
+                                   
                                    ->first();
 
             if ($existingStamp) {
