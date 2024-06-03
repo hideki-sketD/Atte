@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
+use App\Models\Rest;
+use Carbon\Carbon;
 
 class PunchInRequest extends FormRequest
 {
@@ -34,10 +36,9 @@ class PunchInRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $user = Auth::user();
-            $existingStamp = Attendance::where('user_id', $user->id)
-                                   ->whereNull('punchOut')
-                                   
-                                   ->first();
+            $existingStamp = Attendance::where('user_id' ,$user->id ,)
+            ->where('date', Carbon::today())
+            ->first();
 
             if ($existingStamp) {
                 $validator->errors()->add('punchIn', 'すでに出勤打刻がされています。');

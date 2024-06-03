@@ -19,6 +19,11 @@
             {{ $errors->first('punchIn') }}
         </div>
     @endif
+     @if ($errors->has('punchOut'))
+        <div class="alert alert-danger">
+            {{ $errors->first('punchOut') }}
+        </div>
+    @endif
     @if ($errors->has('start'))
         <div class="alert alert-danger">
             {{ $errors->first('start') }}

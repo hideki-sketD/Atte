@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PunchInRequest;
+use App\Http\Requests\PunchOutRequest;
 use App\Models\Attendance;
 use App\Models\Rest;
 use Carbon\Carbon;
@@ -30,7 +31,7 @@ class StampingController extends Controller
         return redirect()->back()->with('message', 'よろしくお願いします');
     }
 
-    public function punchOut(Request $request)
+    public function punchOut(PunchOutRequest $request)
     {
         $user = Auth::user();
         
@@ -86,5 +87,26 @@ class StampingController extends Controller
             $rest->save();
 
         return redirect()->back()->with('message', '休憩を終了しました');}
+    }
+
+    public function attendance(){
+        $user = Auth::user();
+        // dd($user);
+
+        $dates = Attendance::select('date')
+                            ->distinct()
+                            ->orderBy('date', 'desc')
+                            ->get();
+
+        $reports = [];
+        foreach ($dates as $date) {
+            $attendances = Attendance::with('user', 'rests')
+                                     ->where('date', $date->date)
+                                     ->get();
+
+            $reports[$date->date] = $attendances;
+        }
+
+        return view('attendance', compact('reports'));
     }
 }
