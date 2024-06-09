@@ -7,31 +7,42 @@
 @section('content')
 
 <div class="attendance__content">
-  <h1>{{ $my_user->name }}さん
+  <h1 class="attendance-user_name">
+    {{ $my_user->name }}さん
     @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
+     {{ session('message') }}
     @endif
   </h1>
-  
-  <div class="attendance__panel">
-    <form method="POST" action="{{ route('punch.in') }}">
-        @csrf
-        <button type="submit" class="btn btn-primary" {{ $hasPunchedIn ? 'disabled' : '' }}>出勤開始</button>
-    </form>
-    <form method="POST" action="{{ route('punch.out') }}">
+  <div class="attendance-button">
+    <div class="attendance-button_punch">
+      <form method="POST" action="{{ route('punch.in') }}">
       @csrf
-      <button class="attendance__button-submit" type="submit" {{ !$hasPunchedIn || $hasPunchedOut ? 'disabled' : '' }}>勤務終了</button>
-    </form>
-    <form method="POST" action="{{ route('rest.start') }}">
-    @csrf
-    <button type="submit" class="btn btn-primary" {{ !$hasPunchedIn || $hasPunchedOut || $isResting  ? 'disabled' : '' }}>休憩開始</button>
-    </form>
-    <form method="POST" action="{{ route('rest.end') }}">
-    @csrf
-    <button type="submit" class="btn btn-primary"{{ !$hasPunchedIn || $hasPunchedOut || !$isResting  ? 'disabled' : '' }}>休憩終了</button>
-    </form>
+      <button class="attendance__button" type="submit" {{ $hasPunchedIn ? 'disabled' : '' }}>
+        出勤開始
+      </button>
+      </form>
+      <form method="POST" action="{{ route('punch.out') }}">
+      @csrf
+      <button class="attendance__button" type="submit" {{ !$hasPunchedIn || $hasPunchedOut ? 'disabled' : '' }}>
+        勤務終了
+      </button>
+      </form>
+    </div>
+    <div class="attendance-button_rest">
+      <form method="POST" action="{{ route('rest.start') }}">
+      @csrf
+      <button class="attendance__button" type="submit" {{ !$hasPunchedIn || $hasPunchedOut || $isResting  ? 'disabled' : '' }}>
+        休憩開始
+      </button>
+      </form>
+      <form method="POST" action="{{ route('rest.end') }}">
+      @csrf
+      <button class="attendance__button" type="submit" {{ !$hasPunchedIn || $hasPunchedOut || !$isResting  ? 'disabled' : '' }}>
+        休憩終了
+      </button>
+      </form>
+    </div>
   </div>
 </div>
 @endsection
+

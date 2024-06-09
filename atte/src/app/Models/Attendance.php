@@ -55,4 +55,6 @@ class Attendance extends Model
 
         return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
+
+    
 }

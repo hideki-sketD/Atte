@@ -1,0 +1,36 @@
+.attendance__content{
+    height: 650px;
+    background-color: rgb(237, 237, 237);
+}
+
+.attendance-user_name{
+    height: 20%;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 50px;
+}
+
+.attendance-button{
+    height: 75%;
+    width: 100%;
+}
+
+.attendance-button_punch{
+    display: flex;
+    justify-content: center;
+}
+
+.attendance-button_rest{
+    display: flex;
+    justify-content: center;
+}
+
+.attendance__button {
+    width: 500px;
+    height: 200px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+    background-color: rgb(255, 255, 255);
+}

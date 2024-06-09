@@ -33,8 +33,8 @@
                         <td>{{ $attendance->user->name }}</td>
                         <td>{{ $attendance->punchIn }}</td>
                         <td>{{ $attendance->punchOut }}</td>
-                        <td>{{ $attendance->workDuration }}</td>
-                        <td>{{ $attendance->restDuration }}</td>
+                        <td>{{ $attendance->total_work }}</td>
+                        <td>{{ $attendance->total_rest }}</td>
                     </tr>
                 @endforeach
             </tbody>
