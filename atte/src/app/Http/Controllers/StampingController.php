@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PunchInRequest;
-use App\Http\Requests\PunchOutRequest;
 use App\Models\Attendance;
 use App\Models\Rest;
 use Carbon\Carbon;
@@ -14,12 +12,22 @@ class StampingController extends Controller
 {
     public function index(){
         $user = Auth::user();
-        // dd($user);
+        $today = Carbon::today()->toDateString();
 
-        return view('index', ['my_user' => $user]);
+        $attendance = Attendance::where('user_id', $user->id)
+            ->where('date', $today)
+            ->first();
+
+        $hasPunchedIn = $attendance && $attendance->punchIn !== null;
+        $hasPunchedOut = $attendance && $attendance->punchOut !== null;
+        $isResting = $attendance && $attendance->rests()->whereNull('end_time')->exists();
+
+        $my_user = $user;
+
+        return view('index', compact('hasPunchedIn', 'hasPunchedOut', 'my_user', 'isResting'));
     }
 
-    public function punchIn(PunchInRequest $request)
+    public function punchIn(Request $request)
     {
         $user = Auth::user();
 
@@ -28,10 +36,10 @@ class StampingController extends Controller
         ([ 'user_id' => $user->id, 'date' => Carbon::today(),'punchIn' => Carbon::now(), ]);
         
 
-        return redirect()->back()->with('message', 'よろしくお願いします');
+        return redirect()->back()->with('message', 'お疲れ様です！');
     }
 
-    public function punchOut(PunchOutRequest $request)
+    public function punchOut(Request $request)
     {
         $user = Auth::user();
         
@@ -45,7 +53,7 @@ class StampingController extends Controller
             $attendance->save();
         }
 
-        return redirect()->back()->with('message', 'お疲れ様でした');
+        return redirect()->back()->with('message', 'お疲れ様でした！');
     }
 
     public function start(Request $request)
@@ -89,24 +97,20 @@ class StampingController extends Controller
         return redirect()->back()->with('message', '休憩を終了しました');}
     }
 
-    public function attendance(){
+    public function attendance($date = null){
         $user = Auth::user();
-        // dd($user);
 
-        $dates = Attendance::select('date')
-                            ->distinct()
-                            ->orderBy('date', 'desc')
-                            ->get();
+        $date = $date ? Carbon::parse($date) : Carbon::today();
 
-        $reports = [];
-        foreach ($dates as $date) {
-            $attendances = Attendance::with('user', 'rests')
-                                     ->where('date', $date->date)
-                                     ->get();
+        $previousDate = $date->copy()->subDay()->toDateString();
+        $nextDate = $date->copy()->addDay()->toDateString();
 
-            $reports[$date->date] = $attendances;
-        }
+        $attendances = Attendance::with('user', 'rests')
+        ->where('date', $date->toDateString())
+        ->Paginate(5);
+        // ->get();
+        
 
-        return view('attendance', compact('reports'));
+        return view('attendance', compact('date', 'previousDate', 'nextDate', 'attendances'));
     }
 }

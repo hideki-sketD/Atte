@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Attendance;
+use Carbon\Carbon;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //   \App\Models\User::factory(50)->create();
+        $this->call([
+            AttendanceSeeder::class,
+        ]);
     }
 }

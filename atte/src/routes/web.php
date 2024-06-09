@@ -16,4 +16,4 @@ Route::post('/punch-out', [StampingController::class, 'punchOut'])->name('punch.
 Route::post('/start', [StampingController::class, 'start'])->name('rest.start');
 Route::post('/end', [StampingController::class, 'end'])->name('rest.end');
 
-Route::get('/attendance', [StampingController::class, 'attendance'])->name('attendance');
+Route::get('/attendance/{date?}', [StampingController::class, 'Attendance'])->name('attendance');
