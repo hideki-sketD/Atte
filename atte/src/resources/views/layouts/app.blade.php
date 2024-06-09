@@ -20,11 +20,12 @@
           <ul class="header-nav-list">
             @if (Auth::check())
             <li class="header-nav__item">
-              <a class="header-nav__link" href="/">ホーム
+              <a href="/">
+                ホーム
               </a>
             </li>
             <li class="header-nav__item">
-              <a class="header__logo" href="/attendance">
+              <a href="/attendance">
               日付一覧
               </a>
             </li>
