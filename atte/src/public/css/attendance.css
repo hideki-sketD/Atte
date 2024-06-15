@@ -1,0 +1,55 @@
+.attendance__sheet{
+    height: 650px;
+    background-color: rgb(237, 237, 237);
+}
+
+.date-pagination{
+    height: 15%;
+    justify-content: center;
+    margin-top: 0px;
+    padding-top: 30px;
+    display: flex;
+}
+
+.on-day{
+    padding: 0px 20px;
+}
+
+.select-date{
+    padding-top: 26px;
+}
+
+.attendance_table{
+    margin: 30px auto;
+    height: 55px;
+    width: 80%;
+}
+
+.attendance_row{
+    border: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+    height: 25px;
+}
+
+.attendance_row:nth-last-of-type(1) {
+    border: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.attendance_data{
+    padding: 16px 8px;
+    text-align: center;
+}
+
+.attendance_label{
+    padding: 16px 8px;
+    text-align: center;
+    }
+
+
+
+
+

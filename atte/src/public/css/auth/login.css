@@ -1,0 +1,49 @@
+.login__content{
+    height: 650px;
+    background-color: rgb(237, 237, 237);
+}
+
+.login-form__heading{
+    height: 15%;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 60px;
+}
+
+.login-form__group{
+    text-align: center;
+    height: 15%;
+    width: 100%;
+}
+
+.login-form-input,
+.login-form__button{
+    padding: 15px;
+}
+
+.login-form__input--zone{
+    width: 350px;
+    height: 40px;
+    border-radius: 5px;
+    border-width: thin;
+}
+
+.login-form__button-submit{
+    width: 350px;
+    height: 40px;
+    background-color: rgb(59, 59, 250);
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+}
+
+.register__label{
+    color: rgb(152, 152, 152);
+    font-size: small;
+    margin-bottom:  0px;
+}
+
+.register__button-submit{
+    color: rgb(59, 59, 250);
+    font-size: small;
+}
