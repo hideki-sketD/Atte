@@ -21,7 +21,7 @@ class AttendanceSeeder extends Seeder
         // 4週間分の日付をループ
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
             // 各日付に対して50人分のデータを生成
-            for ($userId = 1; $userId <= 50; $userId++) {
+            for ($userId = 1; $userId <= 100; $userId++) {
                 Attendance::factory()->create([
                     'user_id' => $userId,
                     'date' => $date->format('Y-m-d'),

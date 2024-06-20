@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class StampingController extends Controller
 {
+
+
+    public function __construct()
+    {
+        // 全てのメソッドに対して、認証とメール確認のミドルウェアを適用
+        $this->middleware(['auth', 'verified']);
+    }
+
+
     public function index(){
         $user = Auth::user();
         $today = Carbon::today()->toDateString();
@@ -113,4 +122,11 @@ class StampingController extends Controller
 
         return view('attendance', compact('date', 'previousDate', 'nextDate', 'attendances'));
     }
+    
+
+    public function userlist()
+    {
+        return view('userlist');
+    }
+
 }
