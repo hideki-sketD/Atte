@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/end', [StampingController::class, 'end'])->name('rest.end');
     Route::get('/attendance/{date?}', [StampingController::class, 'Attendance'])->name('attendance');
     Route::get('/userlist', [StampingController::class, 'Userlist'])->name('userlist');
+    Route::get('/attendance_sheet', [StampingController::class, 'Attendance_sheet'])->name('attendance_sheet');
 });
 
 

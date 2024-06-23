@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="attendance__sheet">
+<div class="attendance__content">
     <div class="date-pagination">
         <a class="select-date" href="{{ route('attendance', ['date' => $previousDate]) }}">
             ＜

@@ -1,0 +1,41 @@
+.attendanceSheet__content {
+    height: 650px;
+    background-color: rgb(237, 237, 237);
+}
+
+.attendanceSheet-user_name {
+    height: 20%;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 50px;
+}
+
+.attendanceSheet_table {
+    margin: 30px auto;
+    height: 55px;
+    width: 80%;
+}
+
+.attendanceSheet_row {
+    border: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+    height: 25px;
+}
+
+.attendanceSheet_row:nth-last-of-type(1) {
+    border: 1px solid #000000;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.attendanceSheet_data {
+    padding: 16px 8px;
+    text-align: center;
+}
+
+.attendanceSheet_label {
+    padding: 16px 8px;
+    text-align: center;
+}

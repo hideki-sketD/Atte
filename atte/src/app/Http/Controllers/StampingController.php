@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\Rest;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class StampingController extends Controller
@@ -126,7 +127,24 @@ class StampingController extends Controller
 
     public function userlist()
     {
-        return view('userlist');
+        $user = Auth::user();
+
+        $users = User::orderBy('name', 'asc')->paginate(8);
+        return view('userlist', compact('users'));
+    }
+
+    public function attendance_sheet()
+    {
+        $user = Auth::user();
+
+        $my_user = $user;
+
+        $attendances = Attendance::where('user_id', $user->id)
+        ->orderBy('date', 'desc')
+        ->paginate(7);
+        
+
+        return view('attendance_sheet', compact('my_user','attendances'));
     }
 
 }
